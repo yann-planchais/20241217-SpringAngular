@@ -15,9 +15,6 @@ public interface ProduitRepository extends JpaRepository<Produit, Long> {
 	
 	@Query("select p from Produit p where p.nomProduit like %:nom and p.prixProduit > :prix")
 	List<Produit> findByNomPrix (@Param("nom") String nom,@Param("prix") Double prix);
-
-	@Query("select p from Produit p where p.nomProduit like %?1and p.prixProduit > ?2")
-	List<Produit> findByNomPrixAvecInterrogation (String nom,Double prix);
     
 	@Query("select p from Produit p where p.categorie = ?1")
 	List<Produit> findByCategorie (Categorie categorie);
