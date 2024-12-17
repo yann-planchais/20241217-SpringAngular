@@ -1,6 +1,9 @@
 package fr.yopsolo.formation.springangular.entite;
 
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +26,7 @@ public class Categorie {
 	private String descriptionCat;
 	
 	@OneToMany(mappedBy = "categorie")
+	@JsonIgnore
 	private List<Produit> produits;
 	
 
