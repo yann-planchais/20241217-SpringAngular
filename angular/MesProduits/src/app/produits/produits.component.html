@@ -9,10 +9,12 @@
                         <th>Liste des produits</th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let item of produits">
+                <tbody>
+                    @for (item of produits; track $index) {
                     <tr>
                         <td> {{ item }} </td>
                     </tr>
+                    }
                 </tbody>
             </table>
         </div>
