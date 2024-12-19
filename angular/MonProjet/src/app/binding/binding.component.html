@@ -1,0 +1,13 @@
+
+<h1>Binding Interpolation</h1>
+<p> {{titre}}</p>
+
+<h1>Property binding</h1>
+<button [disabled]="status">Cliquer Ici Pour le property binding</button>
+
+<h1>Event binding</h1>
+<button (click)="changerTitreParEventBinding()">Cliquer Ici Pour l'event binding</button>
+
+<h1>Two way binding [()]</h1>
+<input type="text" [(ngModel)] = "nom" />
+<h3>Bonjour {{ nom }} </h3>
