@@ -3,17 +3,35 @@
 <div class="container">
     <div class="card shadow mb-4">
         <div class="card-body">
-            <table>
+
+            <table class="table table-striped">
+                @if(produits.length !=0)
+                {
                 <thead>
                     <tr>
-                        <th>Liste des produits</th>
+                        <th>N°</th>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Prix</th>
+                        <th>Date création</th>
                     </tr>
                 </thead>
+                }
                 <tbody>
-                    @for (item of produits; track $index) {
-                    <tr>
-                        <td> {{ item }} </td>
-                    </tr>
+                    @for (item of produits; track $index; let ind=$index ; let nbr=$count; let premier=$first; let dernier=$last) {
+                        <tr>
+                            <td> {{ ind +2 }} </td>
+                            <td> {{ item.idProduit }} </td>
+                            <td> {{ item.nomProduit }} </td>
+                            <td> {{ item.prixProduit }} </td>
+                            <td> {{ item.dateCreation | date:'dd/MM/yyyy'}} </td>
+                        </tr>
+                        @if(dernier) {
+                            <tr><td colspan="5"> nombre d'éléments : {{nbr}}</td></tr>
+                        }
+                    }
+                    @empty {
+                    <h1>Aucun produit trouvé !</h1>
                     }
                 </tbody>
             </table>
