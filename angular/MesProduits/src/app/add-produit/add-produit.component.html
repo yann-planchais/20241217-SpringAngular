@@ -25,4 +25,9 @@
             <button type="submit" (click)="addProduit()" class="btn btn-success">Ajouter</button>
         </div>
     </form>
+    @if(message != null) {
+        <div>
+            <h3>{{ message}} </h3>
+        </div>
+    }
 </div>
