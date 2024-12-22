@@ -26,10 +26,12 @@ export class ProduitService {
   }
 
   supprimerProduit(prod: Produit)  {
-
+    console.log("service : " + prod);
     const index = this.produits.indexOf(prod, 0);
     if (index > -1) {
-      this.produits.slice(index, 1);
+      this.produits.splice(index, 1);
+    } else {
+      console.log("Produit non trouvé : " + prod.idProduit);
     }
   }
 

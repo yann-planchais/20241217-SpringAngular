@@ -21,12 +21,12 @@
                 <tbody>
                     @for (item of produits; track $index; let ind=$index ; let nbr=$count; let premier=$first; let dernier=$last) {
                         <tr>
-                            <td> {{ ind +2 }} </td>
+                            <td> {{ ind }} </td>
                             <td> {{ item.idProduit }} </td>
                             <td> {{ item.nomProduit }} </td>
                             <td> {{ item.prixProduit }} </td>
                             <td> {{ item.dateCreation | date:'dd/MM/yyyy'}} </td>
-                            <td><a class="btn btn-danger" (onclick)="supprimerProduit(item)">Supprimer</a></td>
+                            <td><a class="btn btn-danger" (click)="supprimerProduit(item)">Supprimer</a></td>
                         </tr>
                         @if(dernier) {
                             <tr><td colspan="5"> nombre d'éléments : {{nbr}}</td></tr>
