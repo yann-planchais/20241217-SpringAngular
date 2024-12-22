@@ -25,4 +25,12 @@ export class ProduitService {
     this.produits.push(prod);
   }
 
+  supprimerProduit(prod: Produit)  {
+
+    const index = this.produits.indexOf(prod, 0);
+    if (index > -1) {
+      this.produits.slice(index, 1);
+    }
+  }
+
 }

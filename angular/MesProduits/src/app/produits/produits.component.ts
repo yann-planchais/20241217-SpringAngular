@@ -11,6 +11,7 @@ import { ProduitService } from '../../../services/produit.service';
 })
 export class ProduitsComponent implements OnInit{
 
+
   produits: Produit[]; // un tableau de produits
 
   constructor(private produitService : ProduitService) { 
@@ -21,4 +22,9 @@ export class ProduitsComponent implements OnInit{
   ngOnInit(): void {
     this.produits = this.produitService.listeProduits();
   }
+
+  supprimerProduit(prod : Produit) {
+    this.produitService.supprimerProduit(prod);
+    }
+
 }
