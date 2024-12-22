@@ -22,5 +22,13 @@
     => injection du service produit dans le constructeur de ts produits et add-produits
     => création des méthodes d'appel au service.
     
+# on crée la suppression des produits
+    => création du bouton
+    => modification de la classe service.
+
+# création de la modification d'un produit
+    => création composant web de modification d'un produit
+    => ajout bouton afin de modifier dans la page de la liste des produits
+    => mise en place des redirections avec RouterLink
 
 
