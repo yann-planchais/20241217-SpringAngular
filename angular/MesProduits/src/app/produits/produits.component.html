@@ -26,6 +26,7 @@
                             <td> {{ item.nomProduit }} </td>
                             <td> {{ item.prixProduit }} </td>
                             <td> {{ item.dateCreation | date:'dd/MM/yyyy'}} </td>
+                            <td><a class="btn btn-success" [routerLink]="['/updateProduit', item.idProduit]">Modifier</a></td>
                             <td><a class="btn btn-danger" (click)="supprimerProduit(item)">Supprimer</a></td>
                         </tr>
                         @if(dernier) {

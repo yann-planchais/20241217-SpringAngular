@@ -30,5 +30,7 @@
     => création composant web de modification d'un produit
     => ajout bouton afin de modifier dans la page de la liste des produits
     => mise en place des redirections avec RouterLink
+    => Attention au format de la date du formulaire : on doit séparer l'aller du retour avec un formalisme yyyy-MM-dd pour le 1Er affichage
+        Sinon ça ne fonctionne pas au 1er affichage : on a pas la date
 
 

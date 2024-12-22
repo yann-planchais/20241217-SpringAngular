@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Produit } from '../src/app/model/produit.model';
+import { Produit } from '../model/produit.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,11 +25,26 @@ export class ProduitService {
     this.produits.push(prod);
   }
 
-  supprimerProduit(prod: Produit)  {
+  supprimerProduit(prod: Produit) {
     console.log("service : " + prod);
     const index = this.produits.indexOf(prod, 0);
     if (index > -1) {
       this.produits.splice(index, 1);
+    } else {
+      console.log("Produit non trouvé : " + prod.idProduit);
+    }
+  }
+
+  consulterProduit(id: number): Produit {
+    return this.produits.find(p => p.idProduit == id)!;
+  }
+
+  miseAJourProduit(prod : Produit)  {
+    const index = this.produits.indexOf(prod, 0);
+    if (index > -1) {
+      this.produits.splice(index, 1); // on supprime
+      this.produits.splice(index, 0, prod); // on ajoute
+      
     } else {
       console.log("Produit non trouvé : " + prod.idProduit);
     }
