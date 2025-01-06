@@ -2,17 +2,27 @@ import { Injectable } from '@angular/core';
 import { Produit } from '../model/produit.model';
 import { Categorie } from '../model/categorie.model';
 
+// HTTPCLIENT
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+const httpOptions = {
+  headers : new HttpHeaders({'Content-Type' : 'application/json'})
+};
+
 @Injectable({
   providedIn: 'root'
 })
 export class ProduitService {
 
-  produits: Produit[];
+  produits!: Produit[];
   categories : Categorie[];
 
-  constructor() {
+
+  apiURL : string = 'http://localhost:8080/produits/api';
+
+  constructor( private http : HttpClient) {
     this.categories = [{idCat : 1, nomCat : 'PC'}, {idCat : 2, nomCat : 'Imprimante'}]
-    this.produits = [
+/*     this.produits = [
       { idProduit: 1, nomProduit: "PC Asus", prixProduit: 3000.600, 
         //categorie : this.categories[0], 
         dateCreation: new Date("01/14/2011") },
@@ -22,13 +32,14 @@ export class ProduitService {
       { idProduit: 3, nomProduit: "Tablette Samsung", prixProduit: 900.123, 
       //   categorie : this.categories[0], 
          dateCreation: new Date("02/20/2020") }
-    ];
+    ]; */
 
   }
 
-  listeProduits(): Produit[] {
-    return this.produits;
+  listeProduits() : Observable<Produit[]> {
+    return  this.http.get<Produit[]>(this.apiURL);
   }
+
 
   ajouterProduit(prod: Produit) {
     this.produits.push(prod);

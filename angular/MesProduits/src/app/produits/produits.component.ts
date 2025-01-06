@@ -12,15 +12,18 @@ import { RouterLink } from '@angular/router';
 export class ProduitsComponent implements OnInit {
 
 
-  produits: Produit[]; // un tableau de produits
+  produits!: Produit[]; // un tableau de produits
 
   constructor(private produitService: ProduitService) {
-    this.produits = [];
+  //  this.produits = [];
   }
 
 
   ngOnInit(): void {
-    this.produits = this.produitService.listeProduits();
+    this.produitService.listeProduits().subscribe(prods => {
+      console.log(prods);
+      this.produits = prods;
+    });
   }
 
   supprimerProduit(prod: Produit) {
