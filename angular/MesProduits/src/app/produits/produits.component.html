@@ -14,6 +14,7 @@
                         <th>Nom</th>
                         <th>Prix</th>
                         <th>Date création</th>
+                        <th>Catégorie</th>
                         <th>Suppression</th>
                     </tr>
                 </thead>
@@ -26,6 +27,7 @@
                             <td> {{ item.nomProduit }} </td>
                             <td> {{ item.prixProduit }} </td>
                             <td> {{ item.dateCreation | date:'dd/MM/yyyy'}} </td>
+                            <td> {{ item.categorie.nomCat}} </td>
                             <td><a class="btn btn-success" [routerLink]="['/updateProduit', item.idProduit]">Modifier</a></td>
                             <td><a class="btn btn-danger" (click)="supprimerProduit(item)">Supprimer</a></td>
                         </tr>
