@@ -23,7 +23,7 @@ export class UpdateProduitComponent implements OnInit{
   }
 
 
-  modifierProduit(prod : Produit) {
-    this.produitService.miseAJourProduit(prod);
+  modifierProduit() : void {
+    this.produitService.miseAJourProduit(this.currentProduit);
   }
 }
