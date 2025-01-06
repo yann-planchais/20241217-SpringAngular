@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProduitService } from '../services/produit.service';
 import { Produit } from '../model/produit.model';
 
@@ -14,7 +14,7 @@ export class UpdateProduitComponent implements OnInit{
 
   currentProduit = new Produit();
 
-  constructor(private activateRoute : ActivatedRoute, private produitService : ProduitService) {
+  constructor(private activateRoute : ActivatedRoute, private router : Router, private produitService : ProduitService) {
 
   }
   ngOnInit(): void {   
@@ -25,5 +25,6 @@ export class UpdateProduitComponent implements OnInit{
 
   modifierProduit() : void {
     this.produitService.miseAJourProduit(this.currentProduit);
+    this.router.navigate(['produits']);
   }
 }
