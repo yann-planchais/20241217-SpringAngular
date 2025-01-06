@@ -14,8 +14,8 @@ import { Categorie } from '../model/categorie.model';
 export class AddProduitComponent implements OnInit {
  
   categories! : Categorie[];
-  newIdCat! : number;
-  newCategorie! : Categorie;
+ // newIdCat! : number;
+ // newCategorie! : Categorie;
 
   constructor(private produitService : ProduitService, private router : Router) {
   
@@ -31,8 +31,8 @@ export class AddProduitComponent implements OnInit {
 
   addProduit() {
     console.log(this.newProduit);
-    this.newCategorie = this.produitService.consulterCategorie(this.newIdCat);
-    this.newProduit.categorie = this.newCategorie;
+   // this.newCategorie = this.produitService.consulterCategorie(this.newIdCat);
+  //  this.newProduit.categorie = this.newCategorie;
     this.produitService.ajouterProduit(this.newProduit);
     this.message = "Produit " + this.newProduit.nomProduit + " ajouté avec succès";
     this.router.navigate(['produits']);

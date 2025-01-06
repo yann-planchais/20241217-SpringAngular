@@ -13,9 +13,15 @@ export class ProduitService {
   constructor() {
     this.categories = [{idCat : 1, nomCat : 'PC'}, {idCat : 2, nomCat : 'Imprimante'}]
     this.produits = [
-      { idProduit: 1, nomProduit: "PC Asus", prixProduit: 3000.600, categorie : this.categories[0], dateCreation: new Date("01/14/2011") },
-      { idProduit: 2, nomProduit: "Imprimante Epson", prixProduit: 450,  categorie : this.categories[1], dateCreation: new Date("12/17/2010") },
-      { idProduit: 3, nomProduit: "Tablette Samsung", prixProduit: 900.123,  categorie : this.categories[0], dateCreation: new Date("02/20/2020") }
+      { idProduit: 1, nomProduit: "PC Asus", prixProduit: 3000.600, 
+        //categorie : this.categories[0], 
+        dateCreation: new Date("01/14/2011") },
+      { idProduit: 2, nomProduit: "Imprimante Epson", prixProduit: 450, 
+         //categorie : this.categories[1], 
+         dateCreation: new Date("12/17/2010") },
+      { idProduit: 3, nomProduit: "Tablette Samsung", prixProduit: 900.123, 
+      //   categorie : this.categories[0], 
+         dateCreation: new Date("02/20/2020") }
     ];
 
   }

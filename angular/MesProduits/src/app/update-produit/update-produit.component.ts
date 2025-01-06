@@ -14,22 +14,22 @@ import { Categorie } from '../model/categorie.model';
 export class UpdateProduitComponent implements OnInit{
 
   currentProduit = new Produit();
-  categories! : Categorie[];
-  updatedCatId! : number;
+  //categories! : Categorie[];
+ // updatedCatId! : number;
   
   constructor(private activateRoute : ActivatedRoute, private router : Router, private produitService : ProduitService) {
 
   }
   ngOnInit(): void {   
     this.currentProduit = this.produitService.consulterProduit(this.activateRoute.snapshot.params['idProduit']);
-    this.categories = this.produitService.listeCategorie();
-    this.updatedCatId = this.currentProduit.categorie.idCat;
+   // this.categories = this.produitService.listeCategorie();
+   // this.updatedCatId = this.currentProduit.categorie.idCat;
     console.log(this.currentProduit);
   }
 
 
   modifierProduit() : void {
-    this.currentProduit.categorie = this.produitService.consulterCategorie(this.updatedCatId);
+  //  this.currentProduit.categorie = this.produitService.consulterCategorie(this.updatedCatId);
     this.produitService.miseAJourProduit(this.currentProduit);
     this.router.navigate(['produits']);
   }
