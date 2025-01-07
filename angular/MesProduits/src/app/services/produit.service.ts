@@ -46,7 +46,7 @@ export class ProduitService {
     //this.produits.push(prod); 
   }
 
-  supprimerProduit(prod: Produit) {
+  supprimerProduit_OldTableau(prod: Produit) {
     console.log("service : " + prod);
     const index = this.produits.indexOf(prod, 0);
     if (index > -1) {
@@ -54,6 +54,11 @@ export class ProduitService {
     } else {
       console.log("Produit non trouvé : " + prod.idProduit);
     }
+  }
+
+  supprimerProduit(id: number) {
+    const url =  `${this.apiURL}/${id}`;
+    return this.http.delete(url, httpOptions);
   }
 
   consulterProduit(id: number): Produit {
