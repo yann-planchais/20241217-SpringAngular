@@ -19,16 +19,15 @@ public class ProduitServiceImpl implements ProduitService {
 
 	@Override
 	public Produit saveProduit(Produit p) {
-		return produitRepository.save(p);
+		Produit plocal = produitRepository.save(p);
+		log.debug("Identifiant généré : {}", p.getIdProduit());
+		return plocal;
 
 	}
 
 	@Override
 	public Produit updateProduit(Produit p) {
-		Produit plocal = produitRepository.save(p);
-		log.debug("Identifiant généré : {}", p.getIdProduit());
-		return plocal;
-
+		return produitRepository.save(p);
 	}
 
 	@Override
