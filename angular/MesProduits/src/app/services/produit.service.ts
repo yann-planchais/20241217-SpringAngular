@@ -41,8 +41,9 @@ export class ProduitService {
   }
 
 
-  ajouterProduit(prod: Produit) {
-    this.produits.push(prod);
+  ajouterProduit(prod: Produit) : Observable<Produit>{
+    return this.http.post<Produit>(this.apiURL, prod, httpOptions);
+    //this.produits.push(prod); 
   }
 
   supprimerProduit(prod: Produit) {

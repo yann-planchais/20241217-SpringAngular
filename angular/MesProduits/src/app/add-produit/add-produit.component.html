@@ -4,8 +4,9 @@
     <div>
         <h2>Ajouter un produit :  </h2>
     </div>
-    <form action="">
-        <div class="col-sm-2 col-md-2 col-lg-2">
+    <form (ngSubmit)="addProduit()">
+        <!-- Hibernate gère lui-même les ID . on cache la div -->
+        <div hidden class="col-sm-2 col-md-2 col-lg-2">
             <label> ID Produit</label>
             <input type="number" [(ngModel)]="newProduit.idProduit" name="idProduit" class="form-control" />
         </div>
@@ -30,7 +31,7 @@
            </select>
         </div> -->
         <div class="mt-2">
-            <button type="submit" (click)="addProduit()" class="btn btn-success">Ajouter</button>
+            <button type="submit" class="btn btn-success">Ajouter</button>
         </div>
     </form>
     @if(message != null) {

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<configuration>
+
+	<appender name="STDOUT"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>
+				%d{HH:mm:ss} %-5level %logger{15}.%M %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+
+	
+	<logger name="fr.yopsolo.formation" level="TRACE" />
+
+
+<!-- Permet d'afficher les requêtes SQL faites par Hibernate -->
+	<logger name="org.hibernate.SQL" level="DEBUG"/>
+	<!-- Permet d'afficher les valeurs des paramètres des requêtes -->
+	<logger name="org.hibernate.orm.jdbc.bind" level="TRACE"/>
+	
+	<logger name="org.springframework.orm.jps.JpaTransactionManager" level="DEBUG"/>
+	<logger name="org.hibernate.internal.sessionImpl" level="TRACE" />
+	
+	<!-- Permet d'afficher le dirty checking sur les entités. Notamment voir les entités et leurs attributs qui ont été modifiés-->
+	<logger name="org.hibernate.event.internal.DefaultFlushEntityEventListener" level="TRACE" />
+		
+	
+	
+	<root level="WARN">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</configuration>
