@@ -14,8 +14,8 @@ import { Categorie } from '../model/categorie.model';
 export class UpdateProduitComponent implements OnInit{
 
   currentProduit = new Produit();
-  //categories! : Categorie[];
- // updatedCatId! : number;
+  categories! : Categorie[];
+ updatedCatId! : number;
   
   constructor(private activateRoute : ActivatedRoute, private router : Router, private produitService : ProduitService) {
 
@@ -24,21 +24,12 @@ export class UpdateProduitComponent implements OnInit{
     this.produitService.consulterProduit(this.activateRoute.snapshot.params['idProduit']).subscribe( prod => {
       this.currentProduit = prod;
     });
-   // this.categories = this.produitService.listeCategorie();
-   // this.updatedCatId = this.currentProduit.categorie.idCat;
+   this.produitService.listeCategorie().subscribe(cats => this.categories = cats);
+   this.updatedCatId = this.currentProduit.categorie.idCat;
     console.log(this.currentProduit);
   }
-
-
-  modifierProduit_oldTableau() : void {
-  //  this.currentProduit.categorie = this.produitService.consulterCategorie(this.updatedCatId);
-    this.produitService.miseAJourProduit(this.currentProduit);
-    this.router.navigate(['produits']); 
-  }
-
   modifierProduit() : void {
-    //  this.currentProduit.categorie = this.produitService.consulterCategorie(this.updatedCatId);
-
+     this.produitService.consulterCategorie(this.updatedCatId).subscribe(cat =>  this.currentProduit.categorie = cat);
       this.produitService.miseAJourProduit(this.currentProduit).subscribe(
         {
           next : prod => this.router.navigate(['produits']),
@@ -47,5 +38,15 @@ export class UpdateProduitComponent implements OnInit{
     );
      
     }
+
+    /**
+     * OLD PART SANS APPEL A SPRING
+     */
+
+    modifierProduit_oldTableau() : void {
+      //  this.currentProduit.categorie = this.produitService.consulterCategorie(this.updatedCatId);
+        this.produitService.miseAJourProduit(this.currentProduit);
+        this.router.navigate(['produits']); 
+      }
 
 }

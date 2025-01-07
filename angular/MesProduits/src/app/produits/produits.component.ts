@@ -15,7 +15,7 @@ export class ProduitsComponent implements OnInit {
   produits?: Produit[]; // un tableau de produits
 
   constructor(private produitService: ProduitService, private router: Router) {
-  //  this.produits = [];
+    //  this.produits = [];
   }
 
 
@@ -24,21 +24,11 @@ export class ProduitsComponent implements OnInit {
   }
 
 
-  chargerProduits() : void {
+  chargerProduits(): void {
     this.produitService.listeProduits().subscribe(prods => {
-      console.log(prods); 
+      console.log(prods);
       this.produits = prods;
     });
-  }
-
-  supprimerProduit_OldTableau(prod: Produit) {
-    console.log("front : " + prod.idProduit);
-    let conf = confirm("Etes-vous sure ?");
-    if (conf) {
-      this.produitService.supprimerProduit_OldTableau(prod);
-    } else {
-      console.log("Annulé par l'utilisateur");
-    }
   }
 
   supprimerProduit(prod: Produit) {
@@ -53,4 +43,19 @@ export class ProduitsComponent implements OnInit {
       console.log("Annulé par l'utilisateur");
     }
   }
+
+  /**
+  * OLD PART SANS APPEL A SPRING
+  */
+
+  supprimerProduit_OldTableau(prod: Produit) {
+    console.log("front : " + prod.idProduit);
+    let conf = confirm("Etes-vous sure ?");
+    if (conf) {
+      this.produitService.supprimerProduit_OldTableau(prod);
+    } else {
+      console.log("Annulé par l'utilisateur");
+    }
+  }
+
 }

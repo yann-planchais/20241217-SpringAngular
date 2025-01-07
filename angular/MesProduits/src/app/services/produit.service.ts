@@ -15,13 +15,13 @@ const httpOptions = {
 export class ProduitService {
 
   produits!: Produit[];
-  categories : Categorie[];
+  categories! : Categorie[];
 
 
   apiURL : string = 'http://localhost:8080/produits/api';
 
   constructor( private http : HttpClient) {
-    this.categories = [{idCat : 1, nomCat : 'PC'}, {idCat : 2, nomCat : 'Imprimante'}]
+   // this.categories = [{idCat : 1, nomCat : 'PC'}, {idCat : 2, nomCat : 'Imprimante'}]
 /*     this.produits = [
       { idProduit: 1, nomProduit: "PC Asus", prixProduit: 3000.600, 
         //categorie : this.categories[0], 
@@ -45,6 +45,35 @@ export class ProduitService {
     return this.http.post<Produit>(this.apiURL, prod, httpOptions);
     //this.produits.push(prod); 
   }
+
+  supprimerProduit(id: number) {
+    const url =  `${this.apiURL}/${id}`;
+    return this.http.delete(url, httpOptions);
+  }
+
+  consulterProduit(id: number): Observable<Produit> {
+    const url =  `${this.apiURL}/${id}`;
+    return this.http.get<Produit>(url);
+
+  }
+
+  miseAJourProduit(prod : Produit) : Observable<Produit> {
+    return this.http.put<Produit>(this.apiURL, prod, httpOptions);
+  }
+
+
+  listeCategorie() : Observable<Categorie[]> {
+    const apiCat = `${this.apiURL}/cat`;
+    return this.http.get<Categorie[]>(apiCat);
+  }
+  consulterCategorie(id: number) : Observable<Categorie> {
+    const apiCat = `${this.apiURL}/cat/${id}`;
+    return this.http.get<Categorie>(apiCat);
+  }
+
+    /**
+     * OLD PART SANS APPEL A SPRING
+     */
 
   supprimerProduit_OldTableau(prod: Produit) {
     console.log("service : " + prod);
@@ -71,27 +100,14 @@ export class ProduitService {
     }
   }
 
-  supprimerProduit(id: number) {
-    const url =  `${this.apiURL}/${id}`;
-    return this.http.delete(url, httpOptions);
-  }
-
-  consulterProduit(id: number): Observable<Produit> {
-    const url =  `${this.apiURL}/${id}`;
-    return this.http.get<Produit>(url);
-
-  }
-
-  miseAJourProduit(prod : Produit) : Observable<Produit> {
-    return this.http.put<Produit>(this.apiURL, prod, httpOptions);
-  }
-
-
-  listeCategorie() : Categorie[] {
+  listeCategorie_oldTableau() : Categorie[] {
     return this.categories;
   }
 
-  consulterCategorie(id: number) : Categorie {
+  consulterCategorie_OldTableau(id: number) : Categorie {
     return this.categories.find(cat => cat.idCat == id)!;
   }
+
+
+
 }

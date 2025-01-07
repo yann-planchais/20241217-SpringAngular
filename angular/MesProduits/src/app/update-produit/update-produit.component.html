@@ -23,14 +23,14 @@
             <input type="date" [ngModel]="currentProduit.dateCreation | date:'yyyy-MM-dd'"
                 (ngModelChange)=" currentProduit.dateCreation= $event" name="dateCreation" class="form-control" />
         </div>
-<!--         <div class="col-sm-4 col-md-4 col-lg-4">
+        <div class="col-sm-4 col-md-4 col-lg-4">
             <label> Catégorie</label>
             <select class="form-control form-control-lg" id="idCat" name="idCat" [(ngModel)] ="updatedCatId" >
                 @for (cat of categories; track cat.idCat) {
                     <option [value]="cat.idCat"> {{cat.nomCat}} </option>
                 }
            </select>
-        </div> -->
+        </div>
 
         <div class="mt-2">
             <button type="submit" (click)="modifierProduit()" class="btn btn-success">Modifier</button>

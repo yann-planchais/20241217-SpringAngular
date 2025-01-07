@@ -13,26 +13,28 @@ import { Categorie } from '../model/categorie.model';
 })
 export class AddProduitComponent implements OnInit {
  
+  
+  newProduit = new Produit();
+
+  message? : string;
   categories! : Categorie[];
- // newIdCat! : number;
- // newCategorie! : Categorie;
+
+ newIdCat! : number;
+ newCategorie! : Categorie;
 
   constructor(private produitService : ProduitService, private router : Router) {
   
   }
 
   ngOnInit(): void {
-    this.categories = this.produitService.listeCategorie();
+    this.produitService.listeCategorie().subscribe(cat => this.categories = cat);
   }
 
-  newProduit = new Produit();
-
-  message? : string;
 
   addProduit() {
     console.log(this.newProduit);
-   // this.newCategorie = this.produitService.consulterCategorie(this.newIdCat);
-  //  this.newProduit.categorie = this.newCategorie;
+    this.produitService.consulterCategorie(this.newIdCat).subscribe(cate => this.newCategorie = cate);
+    this.newProduit.categorie = this.newCategorie;
     this.produitService.ajouterProduit(this.newProduit).subscribe(prod => {
       console.log(prod);
     });
