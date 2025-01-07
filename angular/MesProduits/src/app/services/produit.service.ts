@@ -56,16 +56,11 @@ export class ProduitService {
     }
   }
 
-  supprimerProduit(id: number) {
-    const url =  `${this.apiURL}/${id}`;
-    return this.http.delete(url, httpOptions);
-  }
-
-  consulterProduit(id: number): Produit {
+  consulterProduit_oldTableau(id: number): Produit {
     return this.produits.find(p => p.idProduit == id)!;
   }
 
-  miseAJourProduit(prod : Produit)  {
+  miseAJourProduit_oldTableau(prod : Produit)  {
     const index = this.produits.indexOf(prod, 0);
     if (index > -1) {
       this.produits.splice(index, 1); // on supprime
@@ -75,6 +70,22 @@ export class ProduitService {
       console.log("Produit non trouvé : " + prod.idProduit);
     }
   }
+
+  supprimerProduit(id: number) {
+    const url =  `${this.apiURL}/${id}`;
+    return this.http.delete(url, httpOptions);
+  }
+
+  consulterProduit(id: number): Observable<Produit> {
+    const url =  `${this.apiURL}/${id}`;
+    return this.http.get<Produit>(url);
+
+  }
+
+  miseAJourProduit(prod : Produit) : Observable<Produit> {
+    return this.http.put<Produit>(this.apiURL, prod, httpOptions);
+  }
+
 
   listeCategorie() : Categorie[] {
     return this.categories;
