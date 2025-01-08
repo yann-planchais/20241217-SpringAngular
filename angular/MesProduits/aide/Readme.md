@@ -1,7 +1,16 @@
 # installation de bootstrap : npm i bootstrap
     Bootstrap est une collection d'outils utiles à la création du design (graphisme, animation et interactions avec la page dans le navigateur, etc.) de sites et d'applications web. 
     C'est un ensemble qui contient des codes HTML et CSS, des formulaires, boutons, outils de navigation et autres éléments interactifs, ainsi que des extensions JavaScript en option. C'est l'un des projets les plus populaires sur la plate-forme de gestion de développement GitHub.
-    
+
+ # Commande ng build
+    => va transformer toutes les classes TypeScript en JS pour le déploiement   
+        sous Output location: \dist\mes-produits
+ ## Fichier de configuration
+    ### creation du package des fichiers d'environnement
+        => ng generate environments
+
+    on fait ng build --configuration developement (si dans le répertoire environments, on a un fichier nommé environment.development.ts)
+        => dans le fichier angular.json dans partie build>configurations>development>fileReplacements on voir qu'il va remmplacer les fichiers
 
 # on crée le composant web
    =>   ng g c produits
