@@ -27,7 +27,10 @@ public class ProduitServiceImpl implements ProduitService {
 
 	@Override
 	public Produit updateProduit(Produit p) {
-		return produitRepository.save(p);
+		log.debug("[UPDATE] produit avant save: {}", p);
+		Produit pTemp = produitRepository.save(p);
+		log.debug("[UPDATE] produit après save: {}", p);
+		return pTemp;
 	}
 
 	@Override
