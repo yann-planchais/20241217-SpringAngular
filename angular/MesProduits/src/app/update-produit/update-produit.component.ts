@@ -15,29 +15,37 @@ export class UpdateProduitComponent implements OnInit{
 
   currentProduit = new Produit();
   categories! : Categorie[];
- updatedCatId! : number;
+  updatedCatId! : number;
   
   constructor(private activateRoute : ActivatedRoute, private router : Router, private produitService : ProduitService) {
 
   }
   ngOnInit(): void {   
-    this.produitService.consulterProduit(this.activateRoute.snapshot.params['idProduit']).subscribe( prod => {
-      this.currentProduit = prod;
-    });
+
    this.produitService.listeCategorie().subscribe(cats => this.categories = cats);
-   this.updatedCatId = this.currentProduit.categorie.idCat;
-    console.log(this.currentProduit);
+
+   this.produitService.consulterProduit(this.activateRoute.snapshot.params['idProduit']).subscribe( prod => {
+    this.currentProduit = prod;
+    this.updatedCatId = this.currentProduit.categorie?.idCat;
+    console.log('[UPDATE 1] produit récupéré : ' + JSON.stringify(this.currentProduit));
+  });
+  
   }
+
   modifierProduit() : void {
-     this.produitService.consulterCategorie(this.updatedCatId).subscribe(cat =>  this.currentProduit.categorie = cat);
-      this.produitService.miseAJourProduit(this.currentProduit).subscribe(
-        {
-          next : prod => this.router.navigate(['produits']),
-          error : e => {alert('Erreur lors de la modification : ' + e)}        
-        }
+    console.log("Produit modifié : " + this.currentProduit.nomProduit);
+
+    this.currentProduit.categorie = this.categories.find(cat => cat.idCat == this.updatedCatId)!;
+    this.produitService.miseAJourProduit(this.currentProduit).subscribe(
+      {
+        next : prod =>  {
+          this.router.navigate(['produits']);
+          console.log("[UPDATE] produit mis à jour :  " + JSON.stringify(this.currentProduit));},
+        error : e => {alert('Erreur lors de la modification : ' + e)}        
+      }
     );
      
-    }
+  }
 
     /**
      * OLD PART SANS APPEL A SPRING

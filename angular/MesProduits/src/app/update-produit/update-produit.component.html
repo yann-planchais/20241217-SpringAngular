@@ -25,7 +25,7 @@
         </div>
         <div class="col-sm-4 col-md-4 col-lg-4">
             <label> Catégorie</label>
-            <select class="form-control form-control-lg" id="idCat" name="idCat" [(ngModel)] ="updatedCatId" >
+            <select class="form-control form-control-lg" id="idCat" name="idCat" [(ngModel)] ="updatedCatId">
                 @for (cat of categories; track cat.idCat) {
                     <option [value]="cat.idCat"> {{cat.nomCat}} </option>
                 }
