@@ -1,6 +1,15 @@
-<p>produits works!</p>
+<p>recherche-par-categorie works!</p>
+
 
 <div class="container">
+    <div class="col-sm-4 col-md-4 col-lg-4">
+        <label>Categorie</label>
+       <select class="form-control form-control-lg" id="idCat" name="idCat" [(ngModel)] ="idCategorie" (change)="rechercher()">
+            @for (cat of categories; track cat.idCat) {
+                <option [value]="cat.idCat"> {{cat.nomCat}} </option>
+            }
+       </select>
+    </div>
     <div class="card shadow mb-4">
         <div class="card-body">
 
@@ -15,7 +24,6 @@
                         <th>Prix</th>
                         <th>Date création</th>
                         <th>Catégorie</th>
-                        <th>Suppression</th>
                     </tr>
                 </thead>
                 }
@@ -26,10 +34,8 @@
                             <td> {{ item.idProduit }} </td>
                             <td> {{ item.nomProduit }} </td>
                             <td> {{ item.prixProduit }} </td>
-                            <td> {{ item.dateCreation | date:'dd/MM/yyyy'}} </td>
+                            <td> {{ item.dateCreation }} </td>
                             <td> {{ item.categorie?.nomCat}} </td>
-                            <td><a class="btn btn-success" [routerLink]="['/updateProduit', item.idProduit]">Modifier</a></td>
-                            <td><a class="btn btn-danger" (click)="supprimerProduit(item)">Supprimer</a></td>
                         </tr>
                         @if(dernier) {
                             <tr><td colspan="5"> nombre d'éléments : {{nbr}}</td></tr>

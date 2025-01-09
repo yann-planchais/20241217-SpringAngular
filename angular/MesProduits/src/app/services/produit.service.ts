@@ -70,6 +70,11 @@ export class ProduitService {
     return this.http.get<Categorie>(apiCat);
   }
 
+   rechercherParCategorie(id : number) : Observable<Produit[]> {
+    const url = `${environment.apiURL}/prodscat/${id}`;
+    return this.http.get<Produit[]>(url);
+  }
+
     /**
      * OLD PART SANS APPEL A SPRING
      */

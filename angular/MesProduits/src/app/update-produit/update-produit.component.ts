@@ -15,7 +15,7 @@ export class UpdateProduitComponent implements OnInit{
 
   currentProduit = new Produit();
   categories! : Categorie[];
-  updatedCatId! : number;
+  updatedCatId? : number;
   
   constructor(private activateRoute : ActivatedRoute, private router : Router, private produitService : ProduitService) {
 
