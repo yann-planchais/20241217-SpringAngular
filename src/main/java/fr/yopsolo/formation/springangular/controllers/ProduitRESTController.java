@@ -20,20 +20,20 @@ import fr.yopsolo.formation.springangular.service.ProduitService;
 @RequestMapping("/api")
 @CrossOrigin
 public class ProduitRESTController {
-	
+
 	@Autowired
 	ProduitService produitService;
-	
+
 	@GetMapping
 	public List<Produit> getAllProduits() {
 		return produitService.getAllProduits();
-	 } 		
-	
-	@GetMapping(value="/{id}")
-	public Produit getProduitById(@PathVariable Long id) {	
+	}
+
+	@GetMapping(value = "/{id}")
+	public Produit getProduitById(@PathVariable Long id) {
 		return produitService.getProduit(id);
-    }
-	
+	}
+
 	@PostMapping
 	public Produit createProduit(@RequestBody Produit produit) {
 		return produitService.saveProduit(produit);
@@ -44,16 +44,18 @@ public class ProduitRESTController {
 		return produitService.updateProduit(produit);
 	}
 
-	@DeleteMapping(value="/{id}")
-	public void deleteProduit(@PathVariable Long id)
-	{
+	@DeleteMapping(value = "/{id}")
+	public void deleteProduit(@PathVariable Long id) {
 		produitService.deleteProduitById(id);
 	}
-	
-	@GetMapping(value="/prodscat/{idCat}")
+
+	@GetMapping(value = "/prodscat/{idCat}")
 	public List<Produit> getProduitsByCatId(@PathVariable Long idCat) {
 		return produitService.findByCategorieIdCat(idCat);
-	 }
+	}
 
-
+	@GetMapping(value = "/produitsParNom/{pNom}")
+	public List<Produit> getProduitsByNomContains(@PathVariable String pNom) {
+		return produitService.findByNomProduitContains(pNom);
+	}
 }
