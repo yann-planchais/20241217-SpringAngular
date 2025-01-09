@@ -75,6 +75,12 @@ export class ProduitService {
     return this.http.get<Produit[]>(url);
   }
 
+  rechercherParNom(pNom : string) : Observable<Produit[]> {
+    const url = `${environment.apiURL}/produitsParNom/${pNom}`;
+    return this.http.get<Produit[]>(url);
+  }
+
+
     /**
      * OLD PART SANS APPEL A SPRING
      */

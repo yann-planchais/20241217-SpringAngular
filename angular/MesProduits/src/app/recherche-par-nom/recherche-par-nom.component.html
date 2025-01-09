@@ -1,0 +1,52 @@
+<p>recherche-par-nom works!</p>
+
+
+<div class="container">
+    <form action="">
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label> Nom Produit</label>
+            <input type="text" [(ngModel)]="nomAChercher" name="nomAChercher" class="form-control" />
+        </div>
+        <div class="mt-2">
+            <button type="submit" (click)="rechercherParNom()" class="btn btn-success">Rechercher</button>
+        </div>
+    </form>
+    <div class="card shadow mb-4">
+        <div class="card-body">
+
+            <table class="table table-striped">
+                @if( produits != null && produits.length !=0)
+                {
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Prix</th>
+                        <th>Date création</th>
+                        <th>Catégorie</th>
+                    </tr>
+                </thead>
+                }
+                <tbody>
+                    @for (item of produits; track $index; let ind=$index ; let nbr=$count; let premier=$first; let dernier=$last) {
+                        <tr>
+                            <td> {{ ind }} </td>
+                            <td> {{ item.idProduit }} </td>
+                            <td> {{ item.nomProduit }} </td>
+                            <td> {{ item.prixProduit }} </td>
+                            <td> {{ item.dateCreation }} </td>
+                            <td> {{ item.categorie?.nomCat}} </td>
+                        </tr>
+                        @if(dernier) {
+                            <tr><td colspan="5"> nombre d'éléments : {{nbr}}</td></tr>
+                        }
+                    }
+                    @empty {
+                    <h1>Aucun produit trouvé !</h1>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
