@@ -8,7 +8,12 @@
             <input type="text" [(ngModel)]="nomAChercher" name="nomAChercher" class="form-control" />
         </div>
         <div class="mt-2">
-            <button type="submit" (click)="rechercherParNom()" class="btn btn-success">Rechercher</button>
+            <button type="submit" (click)="rechercherParNomParAppelServeur()" class="btn btn-success">Rechercher</button>
+        </div>
+
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label> Nom Produit Sans Appel Serveur</label>
+            <input type="text"  class="form-control" #searchTerm (keyup)="rechercherParNomParFiltreCoteAngular(searchTerm.value)"/>
         </div>
     </form>
     <div class="card shadow mb-4">
