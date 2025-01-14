@@ -1,0 +1,38 @@
+<p>liste-categories works!</p>
+
+<div class="container">
+    <div class="col-sm-4 col-md-4 col-lg-4">
+        <app-update-categories [categorie]="updatedCategorie"></app-update-categories>
+    </div>
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <table class="table table-striped">
+                @if( categories != null && categories.length !=0)
+                {
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Id</th>
+                        <th>Nom</th>
+                    </tr>
+                </thead>
+                }
+                <tbody>
+                    @for (item of categories; track $index; let ind=$index ; let nbr=$count; let premier=$first; let dernier=$last) {
+                        <tr>
+                            <td> {{ ind }} </td>
+                            <td> {{ item.idCat }} </td>
+                            <td> {{ item.nomCat }} </td>
+                        </tr>
+                        @if(dernier) {
+                            <tr><td colspan="5"> nombre d'éléments : {{nbr}}</td></tr>
+                        }
+                    }
+                    @empty {
+                    <h1>Aucune catégorie trouvée !</h1>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
