@@ -42,4 +42,8 @@
     => Attention au format de la date du formulaire : on doit séparer l'aller du retour avec un formalisme yyyy-MM-dd pour le 1Er affichage
         Sinon ça ne fonctionne pas au 1er affichage : on a pas la date
 
+# Recherche 
+    ## Par Appel serveur : un bouton sur lequel on appuie pour lancer la requête côté serveur
+    ## Par filtre coté Angular : coté html dans l'input  : #searchTerm (keyup)="rechercherParNomParFiltreCoteAngular(searchTerm.value)"
+    ## Par pipe : on crée un nouveau composant ng g pipe searchFilter
 

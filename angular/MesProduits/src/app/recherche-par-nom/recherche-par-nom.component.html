@@ -1,6 +1,4 @@
 <p>recherche-par-nom works!</p>
-
-
 <div class="container">
     <form action="">
         <div class="col-sm-4 col-md-4 col-lg-4">
@@ -10,31 +8,16 @@
         <div class="mt-2">
             <button type="submit" (click)="rechercherParNomParAppelServeur()" class="btn btn-success">Rechercher</button>
         </div>
-
-        <div class="col-sm-4 col-md-4 col-lg-4">
-            <label> Nom Produit Sans Appel Serveur</label>
-            <input type="text"  class="form-control" #searchTerm (keyup)="rechercherParNomParFiltreCoteAngular(searchTerm.value)"/>
-        </div>
     </form>
     <div class="card shadow mb-4">
         <div class="card-body">
-
             <table class="table table-striped">
-                @if( produits != null && produits.length !=0)
+                @if( produitsAppelServeur != null && produitsAppelServeur.length !=0)
                 {
-                <thead>
-                    <tr>
-                        <th>N°</th>
-                        <th>Id</th>
-                        <th>Nom</th>
-                        <th>Prix</th>
-                        <th>Date création</th>
-                        <th>Catégorie</th>
-                    </tr>
-                </thead>
+                <thead><tr><th>N°</th><th>Id</th><th>Nom</th><th>Prix</th><th>Date création</th><th>Catégorie</th> </tr></thead>
                 }
                 <tbody>
-                    @for (item of produits; track $index; let ind=$index ; let nbr=$count; let premier=$first; let dernier=$last) {
+                    @for (item of produitsAppelServeur; track $index; let ind=$index ; let nbr=$count; let premier=$first; let dernier=$last) {
                         <tr>
                             <td> {{ ind }} </td>
                             <td> {{ item.idProduit }} </td>
@@ -48,7 +31,83 @@
                         }
                     }
                     @empty {
-                    <h1>Aucun produit trouvé !</h1>
+                    <h3>Aucun produit trouvé !</h3>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+        <label> Nom Produit Sans Appel Serveur</label>
+        <input type="text"  class="form-control" #searchTerm (keyup)="rechercherParNomParFiltreCoteAngular(searchTerm.value)"/>
+    </div>
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <table class="table table-striped">
+                @if( produitsSansAppelServeur != null && produitsSansAppelServeur.length !=0)
+                {
+                <thead><tr><th>N°</th><th>Id</th><th>Nom</th><th>Prix</th><th>Date création</th><th>Catégorie</th> </tr></thead>
+                }
+                <tbody>
+                    @for (item of produitsSansAppelServeur; track $index; let ind=$index ; let nbr=$count; let premier=$first; let dernier=$last) {
+                        <tr>
+                            <td> {{ ind }} </td>
+                            <td> {{ item.idProduit }} </td>
+                            <td> {{ item.nomProduit }} </td>
+                            <td> {{ item.prixProduit }} </td>
+                            <td> {{ item.dateCreation }} </td>
+                            <td> {{ item.categorie?.nomCat}} </td>
+                        </tr>
+                        @if(dernier) {
+                            <tr><td colspan="5"> nombre d'éléments : {{nbr}}</td></tr>
+                        }
+                    }
+                    @empty {
+                    <h3>Aucun produit trouvé !</h3>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+        <label>Resultat recherche par Pipe</label>
+        <input type="text"  class="form-control" #nom [(ngModel)]="searchTermPipe" name="searchTermPipe"/>
+    </div>
+    <div class="card shadow mb-4">
+        <div class="card-body">
+
+            <table class="table table-striped">
+                @if( allProduits != null && allProduits.length !=0)
+                {
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Prix</th>
+                        <th>Date création</th>
+                        <th>Catégorie</th>
+                    </tr>
+                </thead>
+                }
+                <tbody>
+                    @for (item of allProduits |searchFilter : searchTermPipe; track $index; let ind=$index ; let nbr=$count; let premier=$first; let dernier=$last) {
+                        <tr>
+                            <td> {{ ind }} </td>
+                            <td> {{ item.idProduit }} </td>
+                            <td> {{ item.nomProduit }} </td>
+                            <td> {{ item.prixProduit }} </td>
+                            <td> {{ item.dateCreation }} </td>
+                            <td> {{ item.categorie?.nomCat}} </td>
+                        </tr>
+                        @if(dernier) {
+                            <tr><td colspan="5"> nombre d'éléments : {{nbr}}</td></tr>
+                        }
+                    }
+                    @empty {
+                        <h3>Aucun produit trouvé !</h3>
                     }
                 </tbody>
             </table>
